@@ -12,6 +12,7 @@ RUN apk add --no-cache bash \
     supervisor \
     curl \
     git \
+    php5-dev \
     php5-fpm \
     php5-pdo \
     php5-pdo_mysql \
@@ -44,6 +45,9 @@ RUN apk add --no-cache bash \
     ca-certificates \
     dialog \
     gcc \
+    make \
+    autoconf \
+    libc-dev \
     musl-dev \
     linux-headers \
     libffi-dev &&\
@@ -56,8 +60,14 @@ RUN apk add --no-cache bash \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
     pip install -U certbot && \
+    cd /tmp && \
+    git clone git://github.com/phalcon/cphalcon.git && \
+    cd cphalcon/build/ && \
+    ./install && \
+    echo 'extension=phalcon.so' >/etc/php5/conf.d/phalcon.ini && \
+    rm -rf /tmp/cphalcon/ && \
     mkdir -p /etc/letsencrypt/webrootauth && \
-    apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev
+    apk del gcc make autoconf libc-dev php5-dev musl-dev linux-headers libffi-dev augeas-dev python-dev
 
 
 ADD conf/supervisord.conf /etc/supervisord.conf
