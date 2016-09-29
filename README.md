@@ -6,7 +6,7 @@ To build from source you need to clone the git repo and run docker build:
 ```
 git clone https://github.com/llitllie/nginx-php-fpm/
 .git
-docker build -t nginx-php-fpm:latest .
+docker build -t nginx-php-fpm:phalcon .
 ```
 
 If you have any improvements please submit a pull request.
