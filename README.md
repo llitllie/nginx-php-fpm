@@ -4,7 +4,7 @@ This is a Dockerfile to build a container image for nginx and php-fpm and Phalco
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
-git clone https://github.com/llitllie/nginx-php-fpm/
+git clone https://github.com/llitllie/nginx-php-fpm-phalcon
 .git
 docker build -t nginx-php-fpm:phalcon .
 ```
